@@ -7,23 +7,29 @@ You need to have some Datomic package on your local file system. I'll refer to t
 ## Tasks
 
 * start the Datomic transactor
-`$ lein datomic-setup transactor $DATOMIC-PATH path-to-<trasactor.properties>`
+
+  `$ lein datomic-setup transactor $DATOMIC-PATH path-to-<trasactor.properties>`
 * create a database
-`$ lein datomic-setup database a-valid-datomic-uri`
+
+  `$ lein datomic-setup database a-valid-datomic-uri`
 * star the Datomic peer server
-`$ lein datomic-setup peer-server $DATOMIC-PATH hostname port auth uri`
+
+  `$ lein datomic-setup peer-server $DATOMIC-PATH hostname port auth uri`
 
 ## Lein alternative
 
 You can also use boot instead of this leiningen plugin.
 Just checkout the two boot files:
-`$ build.boot`
-`$ boot.properties`
+
+  `$ build.boot`
+  
+  `$ boot.properties`
 
 into your Clojure project's root.
 
 You can call similar tasks to leiningen plugin tasks or to have a full start-up:
-    $ boot datomic-setup -d $DATOMIC-PATH -b database a-valid-datomic-uri
+
+`$ boot datomic-setup -d $DATOMIC-PATH -b database a-valid-datomic-uri`
     
 ## License
 
