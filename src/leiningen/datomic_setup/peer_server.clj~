@@ -1,0 +1,3 @@
+(ns leiningen.datomic-setup.peer-server)
+
+(defn peer-server [] 3)

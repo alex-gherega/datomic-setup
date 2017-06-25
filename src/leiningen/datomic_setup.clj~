@@ -1,0 +1,27 @@
+(ns leiningen.datomic-setup
+  (:use [leiningen.help :only (help-for subtask-help-for)]
+        [leiningen.datomic-setup.transactor :only (transactor)]
+        [leiningen.datomic-setup.database :only (database)]
+        [leiningen.datomic-setup.peer-server :only (peer-server)])
+  (:require [leiningen.core.eval :refer [eval-in-project]]))
+
+(eval-in-project {:dependencies '[[org.clojure/clojure "1.8.0"]]}
+                 '(println "Using this Clojure version: " *clojure-version*))
+
+;; From leiningen.ring
+(defn- nary? [v n]
+  (some #{n} (map count (:arglists (meta v)))))
+
+(defn datomic-setup
+  "start a transactor; create a database; start a peer server"
+  {:help-arglists '([transactor database peer-server])
+   :subtasks [#'transactor #'database #'peer-server]}
+  ([project]
+   (println (if (nary? #'help-for 2)
+              (help-for project "datomic-setup")
+              (help-for "datomic-setup"))))
+  ([project subtask & args]
+   (case subtask
+     "transactor" 1
+     "database" 2
+     "peer-server" 3)))
